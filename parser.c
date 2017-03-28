@@ -124,6 +124,12 @@ void parse_file ( char * filename,
 	     xvals, yvals, zvals, xvals+1, yvals+1, zvals+1);
       add_box( edges, xvals[0], yvals[0], zvals[0], xvals[1], yvals[1], zvals[1]);
     }//end of box
+
+    if ( strncmp(line, "clear", strlen(line)) == 0 ) {
+      clear_screen(s);
+      edges->lastcol = 0;
+      printf("CLEAR\n");
+    }//end of clear
     
     if ( strncmp(line, "circle", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
