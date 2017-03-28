@@ -25,7 +25,6 @@
 void add_box( struct matrix * edges,
 	      double x, double y, double z,
 	      double width, double height, double depth ) {
-  int xp;
   add_edge(edges, x, y, z, x, y, z);
   add_edge(edges, x + width, y, z, x + width, y, z);
   add_edge(edges, x, y - height, z, x, y - height, z);
@@ -72,6 +71,29 @@ void add_sphere( struct matrix * edges,
   ====================*/
 struct matrix * generate_sphere(double cx, double cy, double cz,
 				double r, double step ) {
+  struct matrix * sphere;
+  sphere = new_matrix(4, 1);
+  struct matrix * xrot;
+  xrot = new_matrix(4, 4);
+  struct matrix * circle;
+  circle = new_matrix(4, 1);
+  
+  
+
+  double theta;//0 -> 2PI
+  double phi;//0 -> PI, one step for each rotation of theta
+  int i, j;
+  
+  
+  for (i = 0; i < step; i++){
+    phi = (j/step) * M_PI;
+    for (j = 0; j < step; j++){
+      theta = (j/step) * 2 * M_PI;
+      
+    }
+  }
+    
+  
   return NULL;
 }
 
