@@ -85,10 +85,6 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
 				double r, double step ) {
   struct matrix * sphere;
   sphere = new_matrix(4, 1);
-  //struct matrix * xrot;
-  //xrot = new_matrix(4, 4);
-  //struct matrix * circle;
-  //circle = new_matrix(4, 1);
 
   double theta;//0 -> 2PI
   double phi;//0 -> PI, one step for each rotation of theta
@@ -105,7 +101,6 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
 			add_point(sphere, x ,y, z);
     }
   }
-
   return sphere;
 }
 
@@ -128,7 +123,19 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
 void add_torus( struct matrix * edges,
 		double cx, double cy, double cz,
 		double r1, double r2, double step ) {
-  return;
+	struct matrix * torus;
+	torus = generate_torus(cx, cy, cz, r1, r2, 100);
+	int i = 0;
+	double x, y, z;
+	while (i < torus->lastcol){
+		x = torus->m[0][i];
+		y = torus->m[1][i];
+		z = torus->m[2][i];
+		//printf("%f %f %f\n", x, y, z);
+		add_edge(edges, x, y, z, x, y, z);
+		i++;
+	}
+	 return;
 }
 
 /*======== void generate_torus() ==========
@@ -145,7 +152,25 @@ void add_torus( struct matrix * edges,
   ====================*/
 struct matrix * generate_torus( double cx, double cy, double cz,
 				double r1, double r2, double step ) {
-  return NULL;
+	struct matrix * torus;
+	torus = new_matrix(4, 1);
+
+	double theta;//0 -> 2PI
+	double phi;//0 -> PI, one step for each rotation of theta
+	int i, j;
+	double x, y, z;
+
+	for (i = 0; i < step; i++){
+	  phi = (i/step) * 2 * M_PI;
+	  for (j = 0; j < step; j++){
+	    theta = (j/step) * 2 * M_PI;
+			x = cos(phi) * (r1 * cos(theta) + r2) + cx;
+			y = r1 * sin(theta) + cy;
+			z = -sin(phi) * (r1 * cos(theta) + r2) + cz;
+			add_point(torus, x ,y, z);
+	   }
+	 }
+	return torus;
 }
 
 /*======== void add_circle() ==========
