@@ -66,6 +66,7 @@ void add_sphere( struct matrix * edges,
 		add_edge(edges, x, y, z, x, y, z);
 		i++;
 	}
+	free_matrix(sphere);
   return;
 }
 
@@ -135,6 +136,7 @@ void add_torus( struct matrix * edges,
 		add_edge(edges, x, y, z, x, y, z);
 		i++;
 	}
+	free_matrix(torus);
 	return;
 }
 
