@@ -135,7 +135,7 @@ void add_torus( struct matrix * edges,
 		add_edge(edges, x, y, z, x, y, z);
 		i++;
 	}
-	 return;
+	return;
 }
 
 /*======== void generate_torus() ==========
@@ -168,8 +168,8 @@ struct matrix * generate_torus( double cx, double cy, double cz,
 			y = r1 * sin(theta) + cy;
 			z = -sin(phi) * (r1 * cos(theta) + r2) + cz;
 			add_point(torus, x ,y, z);
-	   }
-	 }
+	  }
+	}
 	return torus;
 }
 
